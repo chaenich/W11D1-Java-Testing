@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -6,9 +7,13 @@ public class PrinterTest {
 
     private Printer printer;
 
+    @Before
+    public void setup() {
+        printer = new Printer(100, 1000);
+    }
+
     @Test
     public void canConfirmNumberOfPagesLeft() {
-        printer = new Printer(100, 1000);
         assertEquals(100, printer.getPagesLeft());
 
     }
@@ -22,7 +27,6 @@ public class PrinterTest {
     }
     @Test
     public void canConfirmOkToPrint() {
-        printer = new Printer(100, 1000);
         int numPages = 25;
         int numCopies = 3;
         assertEquals(true, printer.printPages(numPages, numCopies));
@@ -30,7 +34,6 @@ public class PrinterTest {
     }
     @Test
     public void canConfirmNumberofPagesLeftAfterPrinting() {
-        printer = new Printer(100, 1000);
         int numPages = 25;
         int numCopies = 3;
         printer.printPages(numPages, numCopies);
@@ -39,7 +42,6 @@ public class PrinterTest {
     }
     @Test
     public void canConfirmNotOkToPrint() {
-        printer = new Printer(100, 1000);
         int numPages = 25;
         int numCopies = 5;
         assertEquals(false, printer.printPages(numPages, numCopies));
